@@ -204,36 +204,24 @@ tree.printTree()
 #Number 4
 #Bring on the Graph!
 #Unweighted
-
-class graphNode:
-	def __init__(self, val):
-		graphNode.v = val
-		graphNode.adj = []
 		
-class graphV:
-	def __init__(self, first):
-		self.vertex = graphNode(first, [])
+class graph:
+	def __init__(self):
+		self.adj = {}
 		
-	
-	def searchGraph(self, val, vertex):
-		if vertex == None:
-			vertex = graphNode(val, [])
-			return True
-		elif vertex.adj == []:
-			#first adj. vertex
-			vertex.adj.append(val)
-		elif val == vertex.v:
-			print "Vertex already exists"
-			return False
-		else:
-			for next_adj in vertex.adj:
-				check_adj = self.searchGraph(val, next_adj)
-				if check_adj != 1:
-					vertex.adj.append(val)
-					return check_adj
 			
 	def addVertex(self, value):
 		#check if value already exists
-		found = self.searchGraph(value, self.vertex)
+		if value in self.adj:
+			print "Vertex already exists"
+		else:
+			self.adj[value] = None
+			
+	
+		
+		
+g = graph()
+g.addVertex(5)
+g.addVertex(4)
 
 		
