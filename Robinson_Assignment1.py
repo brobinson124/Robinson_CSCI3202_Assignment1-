@@ -45,17 +45,10 @@ while stacky.checkSize() > 0:
 #Problem 3
 #Make a Tree
 
-class MyTrieNode:
-	# Initialize some fields 
+class MyTreeNode:
   
-	def __init__(self, isRootNode):
-		#The initialization below is just a suggestion.
-		#Change it as you will.
-		# But do not change the signature of the constructor.
+	def __init__(self, isRootNode):.
 		self.isRoot = isRootNode
-		self.isWordEnd = False # is this node a word ending node
-		#self.isRoot = False # is this a root node
-		self.count = 0 # frequency count
 		self.next = {}
 
     
