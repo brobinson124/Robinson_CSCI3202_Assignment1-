@@ -4,9 +4,9 @@
 #Problem 1
 #impliment a queue
 
-import queue
+import Queue
 
-q = queue.Queue()
+q = Queue.Queue()
 test = [1,2,3,4,5,6,7,8,9,10]
 for x in test:
 	if isinstance(x, int):
@@ -15,7 +15,7 @@ for x in test:
 		print ('Ints')
 		quit()
 while q.qsize() > 0:
-	print ('D-qed: ',q.get())
+	print 'D-qed: ',q.get()
 
 #Problem 2 
 #implement a stack
@@ -39,7 +39,7 @@ for x in test:
     stacky.push(x)
 y = 0
 while stacky.checkSize() > 0:
-	print(stacky.data[(stacky.checkSize()-1)])
+	print stacky.data[(stacky.checkSize()-1)]
 	stacky.pop()
 
 #Problem 3
@@ -68,15 +68,15 @@ class MyTree:
 			if root.l == None:
 				newNode = MyNode(value, None, None, root)
 				root.l = newNode
-				print("Added: ", value," Under Parent: ",root.intkey)
+				#print("Added: ", value," Under Parent: ",root.intkey)
 				return newNode
 			elif root.r == None:
 				newNode = MyNode(value, None, None, root)
 				root.r = newNode
-				print("Added: ", value," Under Parent: ",root.intkey)
+				#print("Added: ", value," Under Parent: ",root.intkey)
 				return newNode
 			else:
-				print("Parent has two children, node not added.")
+				print "Parent has two children, node not added."
 				return False
 		else:
 			for child in root.getChildren():
@@ -87,22 +87,22 @@ class MyTree:
 		
 	def add(self, value, parentValue):
 		if self.root == None:
-			print("Added new root")
+			#print("Added new root")
 			newNode = MyNode(value, None, None, None)
 			self.root = newNode
 		if self.root.intkey == parentValue:
 			if self.root.l == None:
 				newNode = MyNode(value, None, None, self.root)
 				self.root.l = newNode
-				print("Added: ", value," Under Parent: ",self.root.intkey)
+				#print("Added: ", value," Under Parent: ",self.root.intkey)
 				return True
 			elif self.root.r == None:
 				newNode = MyNode(value, None, None, self.root)
 				self.root.r = newNode
-				print("Added: ", value," Under Parent: ",self.root.intkey)
+				#print("Added: ", value," Under Parent: ",self.root.intkey)
 				return True
 			else:
-				print("Parent has two children, node not added.")
+				print "Parent has two children, node not added."
 				return False
 		else:
 			#recursively search through children
@@ -110,7 +110,7 @@ class MyTree:
 				add_node = self.checkTree(value, parentValue, child)
 				if add_node:
 					return add_node
-		print("Node not found")
+		print "Node not found"
 		return False
 	
 	def findNodeDelete(self, value, root):
@@ -118,7 +118,7 @@ class MyTree:
 			return False
 		if value == root.intkey:
 			if root.l == None and root.r == None:
-				print("Deleting Node", root.intkey)
+				#print("Deleting Node", root.intkey)
 				#update parent
 				if root.p.l.intkey == value:
 					root.p.l = None
@@ -127,7 +127,7 @@ class MyTree:
 				root = None
 				return True
 			else:
-				print("Node not deleted, has children")
+				print "Node not deleted, has children"
 				return False
 		else:
 			for child in root.getChildren():
@@ -138,13 +138,15 @@ class MyTree:
 		
 		
 	def delete(self, value):
+		if self.root == None:
+			self.root = MyNode(value, None, None, None)
 		if value == self.root.intkey:
 			if self.root.l == None and self.root.r == None:
-				print("Deleting Root")
+				#print("Deleting Root")
 				self.root = None
 				return True
 			else:
-				print("Node not deleted, has children")
+				print "Node not deleted, has children"
 				return False
 		else:
 			for child in self.root.getChildren():
@@ -152,12 +154,12 @@ class MyTree:
 				if delete_node:
 					return delete_node
 					
-		print("Node not found")
+		print "Node not found" 
 		return False
 		
 	def printTree(self):
 		if self.root != None:
-			print (self.root.intkey)
+			print self.root.intkey
 			for child in self.root.getChildren():
 				self.printBranch(child)
 		else: 
@@ -168,7 +170,7 @@ class MyTree:
 		if root == None:
 			return
 		else:
-			print (root.intkey)
+			print root.intkey
 			for child in root.getChildren():
 				self.printBranch(child)
 					
@@ -198,6 +200,40 @@ tree.add(18,3)
 
 tree.printTree()
 
-	
 
-    
+#Number 4
+#Bring on the Graph!
+#Unweighted
+
+class graphNode:
+	def __init__(self, val):
+		graphNode.v = val
+		graphNode.adj = []
+		
+class graphV:
+	def __init__(self, first):
+		self.vertex = graphNode(first, [])
+		
+	
+	def searchGraph(self, val, vertex):
+		if vertex == None:
+			vertex = graphNode(val, [])
+			return True
+		elif vertex.adj == []:
+			#first adj. vertex
+			vertex.adj.append(val)
+		elif val == vertex.v:
+			print "Vertex already exists"
+			return False
+		else:
+			for next_adj in vertex.adj:
+				check_adj = self.searchGraph(val, next_adj)
+				if check_adj != 1:
+					vertex.adj.append(val)
+					return check_adj
+			
+	def addVertex(self, value):
+		#check if value already exists
+		found = self.searchGraph(value, self.vertex)
+
+		
