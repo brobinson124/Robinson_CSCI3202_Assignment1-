@@ -215,8 +215,17 @@ class graph:
 		if value in self.adj:
 			print "Vertex already exists"
 		else:
-			self.adj[value] = None
+			self.adj[value] = []
 			
+	def addEdge(value1, value2):
+		if value1 in self.adj and value2 in self.adj:
+			value1 = value1.adj[value2]
+			value2 = value2.adj[value1]
+			
+		else:
+			print "One or more vertices not found."
+			
+		
 	
 		
 		
