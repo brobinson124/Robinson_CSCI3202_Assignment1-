@@ -47,8 +47,28 @@ while stacky.checkSize() > 0:
 
 class MyTreeNode:
   
-	def __init__(self, isRootNode):.
-		self.isRoot = isRootNode
-		self.next = {}
+	def __init__(self, intkey, l, r, p):
+		self.intkey = intkey
+		self.l = l
+		self.r = r
+		self.p = p
+	def add(self, value, parentValue):
+		self.intkey = value
+		if (self.p != parentValue): #pvalue is found in tree
+			self.p = parentValue
+	def delete(self, value):
+		self.intkey = value #have to search to see if it's in there
+		if (self.r != 0 ) or (self.l != 0):
+			print("Parent has two children, node not added")
+		else:
+			print("Node not found")
+	def printTree(self):
+		print("Parent Key Value: ",self.p)
+		print("Left Key Value: ", self.l, "Right Key Value: ", self.r)
+		
+#Tree Test
+
+root = MyTreeNode(0, 0, 0, 0)
+	
 
     
