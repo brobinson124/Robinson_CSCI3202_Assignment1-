@@ -45,17 +45,47 @@ while stacky.checkSize() > 0:
 #Problem 3
 #Make a Tree
 
-class MyTreeNode:
+class MyNode:
   
 	def __init__(self, intkey, l, r, p):
 		self.intkey = intkey
 		self.l = l
 		self.r = r
 		self.p = p
+			
+class MyTree:
+	def __init__(self, rootkey):
+
+		self.root = MyNode(rootkey, None, None, None)
+			
 	def add(self, value, parentValue):
-		self.intkey = value
-		if (self.p != parentValue): #pvalue is found in tree
-			self.p = parentValue
+		#search for parentValue
+		if parentValue > self.root.intkey:
+			#go right
+			add(self, parentValue, self.root.r.intkey)
+		if parentValue < self.root.intkey:
+			add(self, parentValue, self.root.l.intkey)
+		if parentValue == self.root.intkey:
+			
+		
+		
+		
+		
+		#if (value > self.root.intkey):
+			##go right
+			#if(self.root.r == None):
+				#newNode = MyNode(value, None, None, self.root)
+				#self.root.r = newNode
+			#else:
+				#add(self, value, root.rc.intkey)
+				
+		#if (value < self.root.intkey):
+			##go left
+			#if(self.root.l == None):
+				#newNode = MyNode(value, None, None, self.root)
+				#self.root.l = newNode
+	
+
 	def delete(self, value):
 		self.intkey = value #have to search to see if it's in there
 		if (self.r != 0 ) or (self.l != 0):
@@ -68,7 +98,9 @@ class MyTreeNode:
 		
 #Tree Test
 
-root = MyTreeNode(0, 0, 0, 0)
+root = MyNode(5, 4, 6, None)
+tree = MyTree(root, True)
+
 	
 
     
